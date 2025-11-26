@@ -1,7 +1,20 @@
 import nodemailer from 'nodemailer';
+import bcryptjs from 'bcryptjs';
 
 export const sendEmail = async ({email,emailType,userId}:any) => {
     try {
+      const hashedToken = await bcryptjs.hash(userId.toString(),10)
+
+      if(emailType === 'VERIFY'){
+        await User.findByIdAndUpdate(userId,
+          {verifyToken: hashedToken, verifyTokenExpiry: Date.now() + 3600000}
+        )
+      }else if(emailType === 'RESET'){
+        await User.findByIdAndUpdate(userId,
+          {forgetPasswordToken: hashedToken, forgetPasswordTokenExpiry: Date.now() + 3600000}
+
+        )
+      }
       const transporter = nodemailer.createTransport({
         host: "smtp.forwardemail.net",
         port: 465,
