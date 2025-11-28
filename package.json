@@ -3,10 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "eslint"
+  "dev": "nodemon --exec next dev",
+  "build": "next build",
+  "start": "next start"
   },
   "dependencies": {
     "bcryptjs": "^3.0.3",
@@ -26,6 +25,7 @@
     "babel-plugin-react-compiler": "1.0.0",
     "eslint": "^9",
     "eslint-config-next": "16.0.3",
+    "nodemon": "^3.1.11",
     "tailwindcss": "^4",
     "typescript": "^5"
   }

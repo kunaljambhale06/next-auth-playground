@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 export async function connectToDatabase() {
     try {
-        mongoose.connect(process.env.MONGODB_URI!)
+        await mongoose.connect(process.env.MONGODB_URI!)
 
         const connection = mongoose.connection;
 
@@ -10,11 +10,11 @@ export async function connectToDatabase() {
             console.log("Database connected successfully");
         })
 
-        connection.on('error',(err) => {
+        connection.on('error', (err) => {
             console.log("Database connection failed" + err);
             process.exit();
-            
-        } 
+        })
     } catch (error) {
         console.log("Database connection error:", error);
     }
+}
