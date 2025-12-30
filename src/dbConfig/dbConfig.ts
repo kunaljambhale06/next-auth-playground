@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 
+//TODOS FOR VERIFY EMAIL ROUTE AND MAILER FUNCTION
 export async function connectToDatabase() {
     try {
         await mongoose.connect(process.env.MONGODB_URI!)
