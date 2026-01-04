@@ -1,9 +1,18 @@
-import React from 'react'
+import React, { useState } from 'react'
 
-function page() {
+export default function SignupPage() {
+
+  const [user, setUser] = useState({
+    email: "",
+    password: "",
+    username: ""
+  })
+
+  const [buttonDisabled, setButtonDisabled] = useState(false)
+  const [loading, setLoading] = useState(false)
+  
   return (
-    <div>page</div>
+    <div>SignUp Page</div>
   )
 }
 
-export default page
