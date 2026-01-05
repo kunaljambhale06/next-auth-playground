@@ -10,9 +10,18 @@ export default function SignupPage() {
 
   const [buttonDisabled, setButtonDisabled] = useState(false)
   const [loading, setLoading] = useState(false)
-  
+
+  const onSignup = () => {
+    try {
+      
+    } catch (error : any) {
+      console.log("Signup failed", error.message);
+    }
   return (
     <div>SignUp Page</div>
   )
 }
+
+}
+
 
