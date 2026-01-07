@@ -1,7 +1,7 @@
 'use client'
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-import { error } from 'console'
+import Link from 'next/link'
 
 export default function VerifyEmailPage() {
     const [token, setToken] = useState("")
@@ -15,7 +15,7 @@ export default function VerifyEmailPage() {
             setError(false)
         } catch (error: any) {
             setError(true)
-            console.log(error.responce.data)
+            console.log(error.response.data)
             
         }
     }
@@ -33,8 +33,7 @@ export default function VerifyEmailPage() {
         }
     }, [token])
   return (
-    <div className='flex flex-col items-center justify-center
-    min-h-screen py-2'>
+    <div className='flex flex-col items-center justify-center min-h-screen py-2'>
         <h1 className='text-4xl'>Verify Your Email</h1>
         <h2 className='p-2 bg-orange-500 text-black'>
             {token ? `${token}` : "No Token"}
