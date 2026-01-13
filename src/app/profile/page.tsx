@@ -1,8 +1,9 @@
-use 'client'
+'use client'
 import React, {useState} from 'react'
 import axios from 'axios'
 import Link from 'next/link'
 import toast from 'react-hot-toast'
+import { useRouter } from 'next/navigation'
 
 export default function ProfilePage() {
     const router = useRouter()
@@ -10,9 +11,8 @@ export default function ProfilePage() {
 
     const getUserData = async () => {
         const res = await axios.post('/api/users/profile')
-        console.log(res.data)
-        setData(res.data._id)
-
+        console.log(res.data.data._id)   
+        setData(res.data.data._id)
     }
 
     const logout = async () => {
@@ -36,6 +36,10 @@ export default function ProfilePage() {
         <hr />
         <button onClick={logout} className='mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700'>
             Logout
+        </button>
+
+        <button onClick={getUserData} className='mt-4 px-4 py-2 bg-green-500 text-white rounded hover:bg-red-700'>
+            Get User Details
         </button>
     </div>
   )
