@@ -10,7 +10,7 @@ export default function ProfilePage() {
     const [data, setData] = useState("")
 
     const getUserData = async () => {
-        const res = await axios.post('/api/users/profile')
+        const res = await axios.post('/api/users/profile') 
         console.log(res.data.data._id)   
         setData(res.data.data._id)
     }
