@@ -27,8 +27,7 @@ export default function ProfilePage() {
 
     }
   return (
-    <div className='flex flex-col items-center
-        justify-center min-h-screen bg-gray-100 py-2'>
+    <div className='flex flex-col items-center justify-center min-h-screen bg-gray-100 py-2'>
         <h1 className='text-4xl font-bold mb-4'>Profile Page</h1>
         <h2>{data === "" ? "No data to display" : <Link href={`/profile/${data}`}>
             {data} </Link>}
