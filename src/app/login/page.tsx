@@ -4,6 +4,7 @@ import axios from 'axios'
 import toast from 'react-hot-toast'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link';
+import { NextResponse } from 'next/server';
 
 export default function SignupPage() {
   const router = useRouter()
@@ -24,8 +25,6 @@ export default function SignupPage() {
       console.log("Sign-Up Successful", response.data)
       toast.success("Sign-Up Successful ! Please verify your email.")
       router.push("/verifyemail")
-
-
     } catch (error: any) {
       console.log("Signup failed", error.message)
       toast.error(error.message)
@@ -46,50 +45,82 @@ export default function SignupPage() {
     }
   }, [user])
 
-  return (
-    <div className='flex flex-col items-center justify-center min-h-screen py-2'>
-      <h1>{loading ? "Processing" : "Login"}</h1>
-      <hr />
+return (
+  <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
 
-      <label htmlFor="username">username</label>
-      <input
-        className='p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 text-black'
-        id='username'
-        value={user.username}
-        onChange={(e) => setUser({ ...user, username: e.target.value })}
-        placeholder='Username'
-        type="text"
-      />
+    <div className="max-w-sm bg-white px-6 py-8 rounded-lg shadow-md">
 
-      <label htmlFor="email">email</label>
-      <input
-        className='p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 text-black'
-        id='email'
-        value={user.email}
-        onChange={(e) => setUser({ ...user, email: e.target.value })}
-        placeholder='Email'
-        type="email"
-      />
+      <h1 className="text-2xl font-semibold text-center mb-[10px]">
+        {loading ? "Processing" : "Sign Up"}
+      </h1>
 
-      <label htmlFor="password">password</label>
-      <input
-        className='p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 text-black'
-        id='password'
-        value={user.password}
-        onChange={(e) => setUser({ ...user, password: e.target.value })}
-        placeholder='Password'
-        type="password"
-      />
+      <hr className="mb-[10px]" />
 
-      <button
-        onClick={onSignup}
-        disabled={buttonDisabled}
-        className='p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 disabled:opacity-50'
+      {/* EXACT 10px vertical spacing between ALL blocks */}
+      <div className="flex flex-col space-y-[10px]">
+
+        <div className="flex flex-col space-y-[10px]">
+          <label htmlFor="username" className="text-sm">
+            Username
+          </label>
+          <input
+            id="username"
+            type="text"
+            value={user.username}
+            onChange={(e) => setUser({ ...user, username: e.target.value })}
+            placeholder="Username"
+            className="p-2 border border-gray-300 rounded-md text-black"
+          />
+        </div>
+
+        <div className="flex flex-col space-y-[10px]">
+          <label htmlFor="email" className="text-sm">
+            Email
+          </label>
+          <input
+            id="email"
+            type="email"
+            value={user.email}
+            onChange={(e) => setUser({ ...user, email: e.target.value })}
+            placeholder="Email"
+            className="p-2 border border-gray-300 rounded-md text-black"
+          />
+        </div>
+
+        <div className="flex flex-col space-y-[10px]">
+          <label htmlFor="password" className="text-sm">
+            Password
+          </label>
+          <input
+            id="password"
+            type="password"
+            value={user.password}
+            onChange={(e) => setUser({ ...user, password: e.target.value })}
+            placeholder="Password"
+            className="p-2 border border-gray-300 rounded-md text-black"
+          />
+        </div>
+
+        <button
+          onClick={onSignup}
+          disabled={buttonDisabled}
+          className="p-2 bg-blue-600 text-white rounded-md disabled:opacity-50"
+        >
+          {buttonDisabled ? "Fill all fields" : "Sign Up"}
+        </button>
+
+      </div>
+
+      <Link
+        href="/login"
+        className="block text-center mt-[10px] text-blue-600 hover:underline"
       >
-        {buttonDisabled ? "Kindly fill all fields" : "Sign Up"}
-      </button>
+        Visit Login Page
+      </Link>
 
-      <Link href="/login">Visit Login Page</Link>
     </div>
-  )
+  </div>
+)
+
+
 }
