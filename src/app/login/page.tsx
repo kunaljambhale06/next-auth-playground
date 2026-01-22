@@ -6,6 +6,8 @@ import { useRouter } from 'next/navigation'
 import Link from 'next/link';
 import { NextResponse } from 'next/server';
 
+//TODO FIXED THE COMMENTED CODE LOGIC
+
 export default function SignupPage() {
   const router = useRouter()
 
@@ -18,15 +20,15 @@ export default function SignupPage() {
   const [buttonDisabled, setButtonDisabled] = useState(true)
   const [loading, setLoading] = useState(false)
 
-  const onSignup = async () => {
+  const onLogin = async () => {
     try {
       setLoading(true)
-      const response = await axios.post("/api/users/signup", user)
-      console.log("Sign-Up Successful", response.data)
-      toast.success("Sign-Up Successful ! Please verify your email.")
-      router.push("/verifyemail")
+      const response = await axios.post("/api/users/login", user)
+      console.log("Login Successful", response.data)
+      toast.success("Login Succesful")
+      router.push("/profile")
     } catch (error: any) {
-      console.log("Signup failed", error.message)
+      console.log("Login failed", error.message)
       toast.error(error.message)
     } finally {
       setLoading(false)
@@ -58,8 +60,8 @@ return (
 
       {/* EXACT 10px vertical spacing between ALL blocks */}
       <div className="flex flex-col space-y-[10px]">
-
-        <div className="flex flex-col space-y-[10px]">
+      
+        {/* <div className="flex flex-col space-y-[10px]">
           <label htmlFor="username" className="text-sm">
             Username
           </label>
@@ -71,7 +73,7 @@ return (
             placeholder="Username"
             className="p-2 border border-gray-300 rounded-md text-black"
           />
-        </div>
+        </div> */}
 
         <div className="flex flex-col space-y-[10px]">
           <label htmlFor="email" className="text-sm">
@@ -102,7 +104,7 @@ return (
         </div>
 
         <button
-          onClick={onSignup}
+          onClick={onLogin}
           disabled={buttonDisabled}
           className="p-2 bg-blue-600 text-white rounded-md disabled:opacity-50"
         >
@@ -111,12 +113,12 @@ return (
 
       </div>
 
-      <Link
-        href="/login"
+      {/* <Link
+        href="/profile"
         className="block text-center mt-[10px] text-blue-600 hover:underline"
       >
         Visit Login Page
-      </Link>
+      </Link> */}
 
     </div>
   </div>
