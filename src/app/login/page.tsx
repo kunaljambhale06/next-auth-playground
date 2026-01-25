@@ -93,7 +93,7 @@ return (
           disabled={buttonDisabled}
           className="p-2 bg-blue-600 text-white rounded-md disabled:opacity-50"
         >
-          {buttonDisabled ? "Fill all fields" : "Sign Up"}
+          {buttonDisabled ? "Fill all fields" : "Login"}
         </button>
 
       </div>
