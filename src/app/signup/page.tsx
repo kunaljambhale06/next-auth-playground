@@ -52,13 +52,27 @@ export default function SignupPage() {
     <div className="max-w-sm bg-white px-6 py-8 rounded-lg shadow-md">
 
       <h1 className="text-2xl font-semibold text-center mb-[10px]">
-        {loading ? "Processing" : "Login"}
+        {loading ? "Processing" : "Sign Up"}
       </h1>
 
       <hr className="mb-[10px]" />
 
       {/* EXACT 10px vertical spacing between ALL blocks */}
       <div className="flex flex-col space-y-[10px]">
+
+        <div className="flex flex-col space-y-10px]">
+          <label htmlFor="username" className="text-sm">
+            Username
+          </label>
+          <input
+            id="username"
+            type="username"
+            value={user.username}
+            onChange={(e) => setUser({ ...user, username: e.target.value })}
+            placeholder="Username"
+            className="p-2 border border-gray-300 rounded-md text-black"
+          />
+        </div>
       
         <div className="flex flex-col space-y-10px]">
           <label htmlFor="email" className="text-sm">
@@ -99,10 +113,10 @@ export default function SignupPage() {
       </div>
 
       <Link
-        href="/signup"
+        href="/login"
         className="block text-center mt-[10px] text-blue-600 hover:underline"
       >
-        New User? Visit Signup Page
+        Already have an account? Login
       </Link> 
 
     </div>
