@@ -11,7 +11,6 @@ export default function SignupPage() {
   const [user, setUser] = useState({
     email: "",
     password: "",
-    username: ""
   })
 
   const [buttonDisabled, setButtonDisabled] = useState(true)
@@ -23,10 +22,13 @@ export default function SignupPage() {
       const response = await axios.post("/api/users/login", user)
       console.log("Login Successful", response.data)
       toast.success("Login Succesful")
-      router.push("/signup")
+      router.push("/profile")
+
     } catch (error: any) {
+      const message = error.response?.data?.message || "Something went wrong in Login! Please try again later."
       console.log("Login failed", error.message)
-      toast.error(error.response?.data?.message || "Login failed");
+      toast.error(message);
+      
     } finally {
       setLoading(false)
     }
@@ -86,12 +88,11 @@ return (
         </div>
 
         <button
-          type='button'
+          type="button"
           onClick={onLogin}
-          disabled={buttonDisabled}
-          className="p-2 bg-blue-600 text-white rounded-md disabled:opacity-50"
+          disabled={buttonDisabled || loading}
         >
-          {buttonDisabled ? "Fill all fields" : "Login"}
+          {loading ? "Logging in..." : "Login"}
         </button>
 
       </div>
