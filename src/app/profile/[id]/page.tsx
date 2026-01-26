@@ -1,6 +1,6 @@
 'use client'
 
-
+//TODO FETCH USER DATA FROM PARAMS.ID AND DISPLAY IT LIKE USERNAME OR EMAIL
 export default function page({params}: any) {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-2">

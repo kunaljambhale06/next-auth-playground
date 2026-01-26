@@ -11,7 +11,7 @@ export function middleware(request: NextRequest) {
     //TODO IN THIS REDIRECT CHECK THE PATH WHERE WE ARE TRYING TO REDIRECT OUR USER
 
     if (isPublicPath && token) {
-        return NextResponse.redirect(new URL('/me', request.url))
+        return NextResponse.redirect(new URL('/profile', request.url))
     }
 
     if (!isPublicPath && !token) {

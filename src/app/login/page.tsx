@@ -5,9 +5,6 @@ import toast from 'react-hot-toast'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link';
 
-
-
-
 export default function SignupPage() {
   const router = useRouter()
 
@@ -26,10 +23,10 @@ export default function SignupPage() {
       const response = await axios.post("/api/users/login", user)
       console.log("Login Successful", response.data)
       toast.success("Login Succesful")
-      router.push("/profile")
+      router.push("/signup")
     } catch (error: any) {
       console.log("Login failed", error.message)
-      toast.error(error.message)
+      toast.error(error.response?.data?.message || "Login failed");
     } finally {
       setLoading(false)
     }
@@ -89,6 +86,7 @@ return (
         </div>
 
         <button
+          type='button'
           onClick={onLogin}
           disabled={buttonDisabled}
           className="p-2 bg-blue-600 text-white rounded-md disabled:opacity-50"

@@ -20,7 +20,7 @@ export async function POST(request: NextRequest) {
 
         if (!validPassword) {
             return NextResponse.json({ message: 'Check your credentials' }, { status: 400 })
-        } 
+        }
 
         //GENERATING JWT TOKEN
         const tokenData = {
@@ -29,14 +29,16 @@ export async function POST(request: NextRequest) {
             email: user.email
         }
 
-        const token = jwt.sign(tokenData, process.env.JWT_SECRET_KEY!, { expiresIn: '1d' })
+        const token = jwt.sign(tokenData, process.env.JWT_TOKEN_SECRET!, { expiresIn: '1d' })
 
         const responce = NextResponse.json({
             message: "Logged in successfully",
             success: true,
         })
         responce.cookies.set('token', token, {
-            httpOnly: true,// USER CANNOT ACCESS THIS COOKIE VIA JAVASCRIPT
+            httpOnly: true,
+            path: '/',        // 🔥 REQUIRED
+            sameSite: 'lax',  // good practice
         })
         return responce;
 
