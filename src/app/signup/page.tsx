@@ -118,7 +118,6 @@ export default function SignupPage() {
       >
         Already have an account? Login
       </Link> 
-
     </div>
   </div>
 )
