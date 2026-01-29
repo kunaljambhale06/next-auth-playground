@@ -7,8 +7,8 @@ export default function LandingPage() {
   return (
     <main className="flex items-center justify-center min-h-screen bg-gray-100">
       <div className="max-w-xl text-center p-6 bg-white rounded-lg shadow-md">
-        <h1 className="text-3xl font-bold mb-4 text-gray-600">
-          Before they sold out readymade gluten
+        <h1 className="text-3xl font-bold mb-4 text-gray-800">
+          Welcome To Complete Next JS authentication system
         </h1>
         <p className="text-gray-600 mb-6">
           Copper mug try-hard pitchfork pour-over freegan heirloom neutra air plant cold-pressed tacos poke beard tote bag. Heirloom echo park mlkshk tote bag selvage hot chicken authentic turmeric truffaut hexagon try-hard chambray.
