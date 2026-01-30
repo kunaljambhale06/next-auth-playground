@@ -60,7 +60,7 @@ export default function SignupPage() {
       {/* EXACT 10px vertical spacing between ALL blocks */}
       <div className="flex flex-col space-y-[10px]">
 
-        <div className="flex flex-col space-y-10px]">
+        <div className="flex flex-col space-y-10px] text-gray-600">
           <label htmlFor="username" className="text-sm">
             Username
           </label>
