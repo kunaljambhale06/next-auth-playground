@@ -105,7 +105,7 @@ export default function SignupPage() {
         <button
           onClick={onSignup}
           disabled={buttonDisabled}
-          className="p-2 bg-blue-600 text-white rounded-md disabled:opacity-50"
+          className="p-2 bg-blue-600 text-white rounded-md disabled:opacity-50 cursor-pointer hover:bg-blue-700 transition-all duration-200 mt-[10px]"
         >
           {buttonDisabled ? "Fill all fields" : "Sign Up"}
         </button>
