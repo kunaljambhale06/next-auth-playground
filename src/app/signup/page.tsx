@@ -74,7 +74,7 @@ export default function SignupPage() {
           />
         </div>
       
-        <div className="flex flex-col space-y-10px]">
+        <div className="flex flex-col space-y-10px] text-gray-600">
           <label htmlFor="email" className="text-sm">
             Email
           </label>
