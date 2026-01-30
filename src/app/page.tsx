@@ -11,8 +11,8 @@ export default function LandingPage() {
           Welcome To Complete Next JS authentication system
         </h1>
         <p className="text-gray-600 mb-6">
-          Copper mug try-hard pitchfork pour-over freegan heirloom neutra air plant cold-pressed tacos poke beard tote bag. Heirloom echo park mlkshk tote bag selvage hot chicken authentic turmeric truffaut hexagon try-hard chambray.
-        </p>
+This project showcases a complete authentication workflow using Next.js App Router, JWT-based sessions, and MongoDB.
+It focuses on secure login, signup, route protection, and real-world authentication patterns.        </p>
         <div className="flex justify-center gap-8">
           <button
             onClick={() => router.push("/login")}
