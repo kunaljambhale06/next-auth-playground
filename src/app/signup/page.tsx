@@ -51,7 +51,7 @@ export default function SignupPage() {
 
     <div className="max-w-sm bg-white px-6 py-8 rounded-lg shadow-md">
 
-      <h1 className="text-2xl font-semibold text-center mb-[10px]">
+      <h1 className="text-2xl text-gray-700 font-semibold text-center mb-[10px]">
         {loading ? "Processing" : "Sign Up"}
       </h1>
 
