@@ -38,7 +38,7 @@ export default function ProfilePage() {
             Logout
         </button>
 
-        <button onClick={getUserData} className='mt-4 px-4 py-2 bg-green-500 text-white rounded hover:bg-red-700'>
+        <button onClick={getUserData} className='mt-4 px-4 py-2 bg-green-500 text-white rounded hover:bg-red-700 cursor-pointer'>
             Get User Details
         </button>
     </div>
