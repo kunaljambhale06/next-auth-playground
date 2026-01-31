@@ -21,7 +21,7 @@ export default function LoginPage() {
       setLoading(true)
       const response = await axios.post("/api/users/login", user)
       console.log("Login Successful", response.data)
-      toast.success("Login Succesful")
+      toast.success("Login Successful")
       router.push("/profile")
 
     } catch (error: any) {
@@ -50,7 +50,7 @@ return (
 
     <div className="max-w-sm bg-white px-6 py-8 rounded-lg shadow-md">
 
-      <h1 className="text-2xl font-semibold text-center mb-[10px]">
+      <h1 className="text-2xl text-gray-700 font-semibold text-center mb-[10px]">
         {loading ? "Processing" : "Login"}
       </h1>
 
@@ -59,7 +59,7 @@ return (
       {/* EXACT 10px vertical spacing between ALL blocks */}
       <div className="flex flex-col space-y-[10px]">
       
-        <div className="flex flex-col space-y-10px]">
+        <div className="flex flex-col space-y-10px] text-gray-700">
           <label htmlFor="email" className="text-sm">
             Email
           </label>
@@ -73,7 +73,7 @@ return (
           />
         </div>
 
-        <div className="flex flex-col space-y-[10px]">
+        <div className="flex flex-col space-y-[10px] text-gray-700">
           <label htmlFor="password" className="text-sm">
             Password
           </label>
