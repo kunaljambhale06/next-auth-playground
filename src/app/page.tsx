@@ -17,13 +17,13 @@ export default function LandingPage() {
         <div className="flex justify-center gap-8">
           <button
             onClick={() => router.push("/login")}
-            className="w-40 px-10 py-4 text-lg bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-all duration-200"
+            className="w-40 px-10 py-4 text-lg bg-purple-600 text-white rounded-lg hover:bg-purple-700 cursor-pointer transition-all duration-200"
           >
             Login
           </button>
           <button
             onClick={() => router.push("/signup")}
-            className="px-10 py-4 text-lg bg-gray-400 text-white rounded-lg hover:bg-gray-500 transition-all duration-200"
+            className="px-10 py-4 text-lg bg-gray-400 text-white rounded-lg hover:bg-gray-500 cursor-pointer transition-all duration-200"
           >
             Sign Up
           </button>
