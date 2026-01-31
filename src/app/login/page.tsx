@@ -5,7 +5,7 @@ import toast from 'react-hot-toast'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link';
 
-export default function SignupPage() {
+export default function LoginPage() {
   const router = useRouter()
 
   const [user, setUser] = useState({
