@@ -1,6 +1,9 @@
 "use client"; 
 import { useRouter } from "next/navigation"; 
 
+//TODO : FIX THE TYPE OF DATA USER CAN ADD AND CAN VIEW
+  
+
 export default function LandingPage() {
   const router = useRouter();
 
