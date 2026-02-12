@@ -15,6 +15,7 @@ export default function LoginPage() {
 
   const [buttonDisabled, setButtonDisabled] = useState(true)
   const [loading, setLoading] = useState(false)
+  const [showPassword, setShowPassword] = useState(false)
 
   const onLogin = async () => {
     try {
@@ -56,10 +57,9 @@ return (
 
       <hr className="mb-[10px]" />
 
-      {/* EXACT 10px vertical spacing between ALL blocks */}
       <div className="flex flex-col space-y-[10px]">
       
-        <div className="flex flex-col space-y-10px] text-gray-700">
+        <div className="flex flex-col space-y-[10px] text-gray-700">
           <label htmlFor="email" className="text-sm">
             Email
           </label>
@@ -73,18 +73,59 @@ return (
           />
         </div>
 
+        {/* Password Field */}
         <div className="flex flex-col space-y-[10px] text-gray-700">
           <label htmlFor="password" className="text-sm">
             Password
           </label>
-          <input
-            id="password"
-            type="password"
-            value={user.password}
-            onChange={(e) => setUser({ ...user, password: e.target.value })}
-            placeholder="Password"
-            className="p-2 border border-gray-300 rounded-md text-black"
-          />
+
+          <div className="relative">
+            <input
+              id="password"
+              type={showPassword ? "text" : "password"}
+              value={user.password}
+              onChange={(e) => setUser({ ...user, password: e.target.value })}
+              placeholder="Password"
+              className="p-2 border border-gray-300 rounded-md text-black w-full pr-10"
+            />
+
+            <button
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+              disabled={user.password.length === 0}
+              className={`absolute right-2 top-1/2 -translate-y-1/2 
+                ${user.password.length === 0 
+                  ? "text-gray-300 cursor-not-allowed" 
+                  : "text-gray-600 hover:text-gray-800 cursor-pointer"
+                }`}
+            >
+              {showPassword ? (
+                /* Eye Off SVG */
+                <svg xmlns="http://www.w3.org/2000/svg" 
+                  fill="none" 
+                  viewBox="0 0 24 24" 
+                  strokeWidth={1.8} 
+                  stroke="currentColor" 
+                  className="w-5 h-5">
+                  <path strokeLinecap="round" strokeLinejoin="round" 
+                    d="M3 3l18 18M10.584 10.587a2 2 0 002.829 2.829M9.878 5.08A9.956 9.956 0 0112 5c5.523 0 10 7 10 7a17.764 17.764 0 01-2.293 2.942M6.61 6.61A17.765 17.765 0 002 12s4.477 7 10 7a9.956 9.956 0 004.122-.92" />
+                </svg>
+              ) : (
+                /* Eye SVG */
+                <svg xmlns="http://www.w3.org/2000/svg" 
+                  fill="none" 
+                  viewBox="0 0 24 24" 
+                  strokeWidth={1.8} 
+                  stroke="currentColor" 
+                  className="w-5 h-5">
+                  <path strokeLinecap="round" strokeLinejoin="round" 
+                    d="M2.25 12s4.5-7.5 9.75-7.5S21.75 12 21.75 12 17.25 19.5 12 19.5 2.25 12 2.25 12z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" 
+                    d="M12 15a3 3 0 100-6 3 3 0 000 6z" />
+                </svg>
+              )}
+            </button>
+          </div>
         </div>
 
         <button
