@@ -15,11 +15,9 @@ function ResetPasswordForm() {
   const [loading, setLoading] = useState(false);
   const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
   const [message, setMessage] = useState("");
-  const [tokenValid, setTokenValid] = useState(true);
 
   useEffect(() => {
     if (!token) {
-      setTokenValid(false);
       setStatus("error");
       setMessage("No reset token found. Please request a new reset link.");
     }
@@ -31,7 +29,6 @@ function ResetPasswordForm() {
       setMessage("Passwords do not match.");
       return;
     }
-
     if (password.length < 6) {
       setStatus("error");
       setMessage("Password must be at least 6 characters.");
@@ -44,7 +41,6 @@ function ResetPasswordForm() {
       const response = await axios.post("/api/users/resetpassword", { token, password });
       setStatus("success");
       setMessage(response.data.message);
-      // Redirect to login after 2 seconds
       setTimeout(() => router.push("/login"), 2000);
     } catch (error: any) {
       setStatus("error");
@@ -72,15 +68,18 @@ function ResetPasswordForm() {
           </div>
         ) : (
           <>
-            {!tokenValid ? (
-              <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded w-full text-sm">
-                {message}
+            {!token ? (
+              <div className="flex flex-col items-center gap-4 w-full">
+                <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded w-full text-sm">
+                  {message}
+                </div>
+                <Link href="/forgotpassword" className="text-blue-500 underline text-sm">
+                  Request a new reset link
+                </Link>
               </div>
             ) : (
               <>
-                <label htmlFor="password" className="sr-only">New Password</label>
                 <input
-                  id="password"
                   className="p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-gray-600 w-full"
                   type="password"
                   value={password}
@@ -88,9 +87,7 @@ function ResetPasswordForm() {
                   placeholder="New password (min. 6 chars)"
                 />
 
-                <label htmlFor="confirmPassword" className="sr-only">Confirm Password</label>
                 <input
-                  id="confirmPassword"
                   className="p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-gray-600 w-full"
                   type="password"
                   value={confirmPassword}
@@ -113,12 +110,6 @@ function ResetPasswordForm() {
                 </button>
               </>
             )}
-
-            {status === "error" && !tokenValid === false && (
-              <Link href="/forgot-password" className="text-sm text-blue-500 underline">
-                Request a new reset link
-              </Link>
-            )}
           </>
         )}
 
@@ -130,10 +121,13 @@ function ResetPasswordForm() {
   );
 }
 
-// Wrap in Suspense because useSearchParams requires it in Next.js App Router
 export default function ResetPasswordPage() {
   return (
-    <Suspense fallback={<div className="flex items-center justify-center min-h-screen">Loading...</div>}>
+    <Suspense fallback={
+      <div className="flex items-center justify-center min-h-screen">
+        Loading...
+      </div>
+    }>
       <ResetPasswordForm />
     </Suspense>
   );

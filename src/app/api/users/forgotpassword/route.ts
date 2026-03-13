@@ -15,7 +15,6 @@ export async function POST(request: NextRequest) {
 
     const user = await User.findOne({ email });
 
-    // Always return success to prevent email enumeration
     if (!user) {
       return NextResponse.json(
         { message: 'If an account with that email exists, a reset link has been sent.' },
@@ -23,7 +22,6 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // sendEmail handles token generation + saving to user document
     await sendEmail({
       email: user.email,
       emailType: 'RESET',

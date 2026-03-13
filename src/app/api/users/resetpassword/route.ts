@@ -17,7 +17,6 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ message: 'Password must be at least 6 characters' }, { status: 400 });
     }
 
-    // Find user whose forgotPasswordToken matches AND hasn't expired
     const user = await User.findOne({
       forgotPasswordToken: token,
       forgotPasswordTokenExpiry: { $gt: Date.now() },
@@ -30,17 +29,18 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Hash the new password
     const salt = await bcryptjs.genSalt(10);
     const hashedPassword = await bcryptjs.hash(password, salt);
 
-    // Update password and clear the reset token fields
     await User.findByIdAndUpdate(user._id, {
       $set: { password: hashedPassword },
       $unset: { forgotPasswordToken: '', forgotPasswordTokenExpiry: '' },
     });
 
-    return NextResponse.json({ message: 'Password reset successfully. You can now log in.' }, { status: 200 });
+    return NextResponse.json(
+      { message: 'Password reset successfully. You can now log in.' },
+      { status: 200 }
+    );
 
   } catch (error: any) {
     return NextResponse.json({ message: error.message || 'Server error' }, { status: 500 });

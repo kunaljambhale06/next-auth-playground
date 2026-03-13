@@ -2,25 +2,22 @@ import nodemailer from 'nodemailer';
 import bcryptjs from 'bcryptjs';
 import User from '@/models/userModel';
 
-
 export const sendEmail = async ({ email, emailType, userId }: any) => {
   try {
     const hashedToken = await bcryptjs.hash(userId.toString(), 10)
 
     if (emailType === 'VERIFY') {
-      const updatedUser = await User.findByIdAndUpdate(userId, {
+      await User.findByIdAndUpdate(userId, {
         $set: {
           verifyToken: hashedToken,
-          verifyTokenExpiry: Date.now() + 3600000 // 1 hour
+          verifyTokenExpiry: Date.now() + 3600000
         }
       })
-      console.log("Updated User token details:", updatedUser);
-
     } else if (emailType === 'RESET') {
       await User.findByIdAndUpdate(userId, {
         $set: {
           forgotPasswordToken: hashedToken,
-          forgotPasswordTokenExpiry: Date.now() + 3600000 // 1 hour
+          forgotPasswordTokenExpiry: Date.now() + 3600000
         }
       })
     }
@@ -40,11 +37,12 @@ export const sendEmail = async ({ email, emailType, userId }: any) => {
       throw new Error(`SMTP verification failed: ${verifyError.message}`);
     }
 
-    //  FIX: Reset email now points to /reset-password, not /verifyemail
+    //  VERIFY → /verifyemail?token=   (your existing working route)
+    //  RESET  → /resetpassword?token= (no hyphen, same pattern as verifyemail)
     const actionLink =
       emailType === 'VERIFY'
         ? `${process.env.DOMAIN}/verifyemail?token=${hashedToken}`
-        : `${process.env.DOMAIN}/reset-password?token=${hashedToken}`;
+        : `${process.env.DOMAIN}/resetpassword?token=${hashedToken}`;
 
     const mailOptions = {
       from: 'kunal@gmail.com',
@@ -57,6 +55,7 @@ export const sendEmail = async ({ email, emailType, userId }: any) => {
 
     const mailResponse = await transporter.sendMail(mailOptions)
     return mailResponse;
+
   } catch (error: any) {
     throw new Error(error.message)
   }
