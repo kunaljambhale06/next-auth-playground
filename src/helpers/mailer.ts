@@ -40,7 +40,7 @@ export const sendEmail = async ({ email, emailType, userId }: any) => {
       throw new Error(`SMTP verification failed: ${verifyError.message}`);
     }
 
-    // ✅ FIX: Reset email now points to /reset-password, not /verifyemail
+    //  FIX: Reset email now points to /reset-password, not /verifyemail
     const actionLink =
       emailType === 'VERIFY'
         ? `${process.env.DOMAIN}/verifyemail?token=${hashedToken}`
