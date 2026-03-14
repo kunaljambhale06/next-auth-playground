@@ -144,6 +144,10 @@ return (
         className="block text-center mt-[10px] text-blue-600 hover:underline"
       >
         New User? Visit Signup Page
+      </Link>
+
+      <Link href="/forgotpassword" className="block text-center mt-[10px] text-blue-600 hover:underline">
+        Forgot password?
       </Link> 
 
     </div>
