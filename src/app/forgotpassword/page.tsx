@@ -26,8 +26,8 @@ export default function ForgotPasswordPage() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen py-2">
-      <h1 className="text-4xl font-bold mb-4">
+    <div className="flex flex-col items-center justify-center min-h-screen py-2 bg-slate-200">
+      <h1 className="text-2xl text-gray-700 font-semibold text-center mb-[10px]">
         {loading ? "Processing..." : "Forgot Password"}
       </h1>
       <hr />
@@ -52,7 +52,7 @@ export default function ForgotPasswordPage() {
         ) : (
           <>
             <input
-              className="p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-gray-600 w-full"
+              className="p-2 border border-gray-300 rounded-lg text-gray-700 focus:outline-none focus:border-gray-600 w-full"
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
